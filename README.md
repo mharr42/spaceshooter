@@ -1,3 +1,3 @@
 # spaceshooter
-SW Engineering Group Project
+SW Engineering Group Project <br>
 Simple multiplayer space shooter
