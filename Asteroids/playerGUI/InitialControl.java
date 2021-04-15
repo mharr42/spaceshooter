@@ -40,3 +40,4 @@ public class InitialControl implements ActionListener
       cardLayout.show(container, "3");
     }
   }
+}
