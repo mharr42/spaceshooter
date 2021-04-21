@@ -15,11 +15,13 @@ public class PlayerInput implements ActionListener, KeyListener
     private boolean dPressed = false;
     private boolean wPressed = false;
     private boolean sPressed = false;
+    private boolean firePressed = false;
     
     private boolean aProcessed = false;
     private boolean dProcessed = false;
     private boolean wProcessed = false;
     private boolean sProcessed = false;
+    private boolean fireProcessed = false;
     
     private float x;
     private float y;
@@ -56,11 +58,21 @@ public class PlayerInput implements ActionListener, KeyListener
     		y += 1;
     		sProcessed = true;
     	}
+    	if(firePressed && ! fireProcessed)
+    	{
+    		firePressed = false;
+    		fireProcessed = true;
+    	}
     }
     
     public Vector2 getInput()
     {
     	return new Vector2(x,y);
+    }
+    
+    public boolean checkFire()
+    {
+    	return firePressed;
     }
     public void step()
     {
@@ -90,6 +102,10 @@ public class PlayerInput implements ActionListener, KeyListener
     	{
     		sPressed = true;
     	}
+    	if(e.getKeyCode() == KeyEvent.VK_SPACE && !fireProcessed)
+    	{
+    		firePressed = true;
+    	}
     }
     
     public void keyReleased(KeyEvent e)
@@ -117,6 +133,11 @@ public class PlayerInput implements ActionListener, KeyListener
     		sPressed = false;
     		sProcessed = false;
     		y -= 1;
+    	}
+    	if(e.getKeyCode() == KeyEvent.VK_SPACE)
+    	{
+    		firePressed = false;
+    		fireProcessed = false;
     	}
     }
     

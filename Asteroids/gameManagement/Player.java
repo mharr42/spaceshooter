@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import input.PlayerInput;
 import movement.Movement;
+import movement.Collider;
 
 public class Player 
 {
@@ -17,6 +18,7 @@ public class Player
 	private int health = 5;
 	private int score;
 	private PlayerData data;
+	private Collider col;
 //	private Vector2 bounds;
 	
 	public Player()
@@ -27,13 +29,14 @@ public class Player
 		ship = new JLabel("");
 		ship.setBounds(24, 133, 67, 40);
 		
-		
+		col = new Collider(currentPosition, 30, 30);
 		data = new PlayerData(this);
 	}
 	
 	public void updatePos()
 	{
 		setShipBounds(currentPosition, 67, 40);
+		col.updatePos(currentPosition);
 	}
 	
 	public void move(JFrame frame, GamePanel panel)
@@ -43,9 +46,10 @@ public class Player
 		{
 			Movement mover = new Movement();
 			Vector2 displacement = new Vector2(pInput.x * moveSpeed, pInput.y * moveSpeed);
-			Vector2 p1deltaPos =  mover.Move(currentPosition, displacement);
+			Vector2 deltaPos =  mover.Move(currentPosition, displacement);
 
-			setCurrentPosition(p1deltaPos);
+			setCurrentPosition(deltaPos);
+			col.updatePos(currentPosition);
 			panel.paintComponenet(frame.getGraphics());
 			frame.repaint();
 		}
@@ -110,11 +114,25 @@ public class Player
 		this.data = data;
 	}
 	
+	public Collider getCollider()
+	{
+		return col;
+	}
+	public void setCollider(Collider c)
+	{
+		col = c;
+	}
+	
 	public void updateData()
 	{
 		data.setPosition(currentPosition);
 		data.setHealth( health);
 		data.setScore(score);
+	}
+	
+	public void doDamage(int damage)
+	{
+		health -= damage;
 	}
 	
 }

@@ -63,7 +63,7 @@ public class GamePanel extends JPanel
 		bg.setIcon(new ImageIcon(GamePanel.class.getResource("/gameManagement/bg.jpg")));
 		bg.setBounds(0, 0, 506, 518);
 		add(bg);
-		
+//		
 		//repaint();
 	}
 	

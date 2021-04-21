@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import input.PlayerInput;
-import movement.Movement;
+//import movement.Movement;
 
 public class Game implements ActionListener
 {
@@ -18,7 +18,6 @@ public class Game implements ActionListener
 	private boolean paused = false;
 	private JFrame frame;
 	private Timer timer;
-	private float moveSpeed = 2;
 	
 	public static void main(String[] args)
 	{
@@ -68,22 +67,19 @@ public class Game implements ActionListener
 			players[0].move(frame, serverPanel);
 			players[1].move(frame, serverPanel);
 			
+			players[0].getCollider().CheckOverlap(players[1].getCollider().getBounds());
+			
+			if(players[0].getInput().checkFire())
+			{
+				System.out.println("shot fired");
+				Projectile bullet = new Projectile();
+//				bullet.setCurrentPos(null);
+				serverPanel.add(bullet.spawn(players[0].getCurrentPosition()));
+				
+				bullet.move(frame, serverPanel, 1);
+			}
+			
 			updatePlayerData();
-		}
-	}
-	
-	public void movePlayer(Player p)
-	{
-		Vector2 pInput = p.getInput().getInput();
-		if(pInput.x != 0 || pInput.y != 0)
-		{
-			Movement mover = new Movement();
-			Vector2 displacement = new Vector2(pInput.x * moveSpeed, pInput.y * moveSpeed);
-			Vector2 p1deltaPos =  mover.Move(p.getCurrentPosition(), displacement);
-
-			p.setCurrentPosition(p1deltaPos);
-//			serverPanel.paintComponenet(frame.getGraphics());
-//			frame.repaint();
 		}
 	}
 	
