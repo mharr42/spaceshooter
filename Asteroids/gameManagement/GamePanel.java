@@ -3,7 +3,6 @@ package gameManagement;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +15,12 @@ public class GamePanel extends JPanel
 	
 	private Player p1; 
 	private Player p2;
-
+	
+	private JLabel p1Health;
+	private JLabel p2Health;
+	
+	private JLabel p1Score;
+	private JLabel p2Score;
 	
 	public GamePanel(KeyListener[] keys, Player[] players, JFrame frame)
 	{
@@ -39,33 +43,27 @@ public class GamePanel extends JPanel
 		add(p1.getShip());
 		add(p2.getShip());
 		
-		JLabel p1Score = new JLabel("score: ");
+		p1Score = new JLabel("score: ");
 		p1Score.setForeground(Color.LIGHT_GRAY);
 		p1Score.setBounds(55, 0, 72, 22);
 		add(p1Score);
 				
-		JLabel p2Score = new JLabel("score: ");
+		p2Score = new JLabel("score: ");
 		p2Score.setForeground(Color.LIGHT_GRAY);
 		p2Score.setBounds(306, 0, 72, 22);
 		add(p2Score);
 						
-		JLabel p1Health = new JLabel("health:");
+		p1Health = new JLabel("health:");
 		p1Health.setForeground(Color.LIGHT_GRAY);
 		p1Health.setBounds(55, 20, 72, 22);
 		add(p1Health);
 						
-		JLabel p2Health = new JLabel("health:");
+		p2Health = new JLabel("health:");
 		p2Health.setForeground(Color.LIGHT_GRAY);
 		p2Health.setBounds(306, 20, 72, 22);
 		add(p2Health);
-						
-		JLabel bg = new JLabel("");
-		bg.setIcon(new ImageIcon(GamePanel.class.getResource("/gameManagement/bg.jpg")));
-		bg.setBounds(0, 0, 506, 518);
-		add(bg);
-//		
-		//repaint();
 	}
+
 	
 	public JPanel getPanel()
 	{
@@ -78,5 +76,8 @@ public class GamePanel extends JPanel
 		
 		p1.updatePos();
 		p2.updatePos();
+		
+		p1Health.setText("healht: " + p1.getHealth());
+		p2Health.setText("health: " + p2.getHealth());
 	}
 }

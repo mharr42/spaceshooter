@@ -1,10 +1,8 @@
 package gameManagement;
 
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-
 import input.PlayerInput;
 import movement.Movement;
 import movement.Collider;
@@ -15,11 +13,11 @@ public class Player
 	private JLabel ship;
 	private PlayerInput input;
 	private float moveSpeed = 2;
-	private int health = 5;
+	private int health = 20;
 	private int score;
 	private PlayerData data;
 	private Collider col;
-//	private Vector2 bounds;
+	private ArrayList<Projectile> bullets;
 	
 	public Player()
 	{
@@ -31,6 +29,8 @@ public class Player
 		
 		col = new Collider(currentPosition, 30, 30);
 		data = new PlayerData(this);
+		
+		bullets = new ArrayList<Projectile>();
 	}
 	
 	public void updatePos()
@@ -39,7 +39,7 @@ public class Player
 		col.updatePos(currentPosition);
 	}
 	
-	public void move(JFrame frame, GamePanel panel)
+	public void move()
 	{
 		Vector2 pInput = input.getInput();
 		if(pInput.x != 0 || pInput.y != 0)
@@ -50,9 +50,22 @@ public class Player
 
 			setCurrentPosition(deltaPos);
 			col.updatePos(currentPosition);
-			panel.paintComponenet(frame.getGraphics());
-			frame.repaint();
+			
 		}
+	}
+	
+	public void shoot(GamePanel panel)
+	{
+		Projectile bullet = new Projectile();
+		bullets.add(bullet);
+		
+		panel.add(bullet.spawn(currentPosition));
+		
+	}
+	
+	public ArrayList<Projectile> bullets()
+	{
+		return bullets;
 	}
 	
 	public void setShipImage(ImageIcon i)
@@ -73,7 +86,7 @@ public class Player
 	{
 		return ship;
 	}
-
+	
 	public Vector2 getCurrentPosition() {
 		return currentPosition;
 	}
@@ -133,6 +146,7 @@ public class Player
 	public void doDamage(int damage)
 	{
 		health -= damage;
+		System.out.println("health = " + health);
 	}
 	
 }

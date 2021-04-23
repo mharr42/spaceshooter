@@ -25,7 +25,9 @@ public class PlayerInput implements ActionListener, KeyListener
     
     private float x;
     private float y;
-
+    
+    private int fireDelay;
+    
     public PlayerInput()
     {
     	x = 0;
@@ -60,8 +62,16 @@ public class PlayerInput implements ActionListener, KeyListener
     	}
     	if(firePressed && ! fireProcessed)
     	{
-    		firePressed = false;
-    		fireProcessed = true;
+    		if(fireDelay == 1)
+    		{
+    			firePressed = false;
+    			fireProcessed = true;
+    			fireDelay = 0;
+    		}
+    		else
+    		{
+    			fireDelay++;
+    		}
     	}
     }
     
