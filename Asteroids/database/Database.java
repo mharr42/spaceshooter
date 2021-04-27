@@ -26,7 +26,7 @@ public class Database
         
         try
         {
-            fis = new FileInputStream("lab7out/db.properties");
+            fis = new FileInputStream("playerGUI/db.properties");
             
         } catch (FileNotFoundException e2)
         {
