@@ -45,6 +45,7 @@ public class Game implements ActionListener
 
 
 		serverPanel = new GamePanel(playerInputs, players, frame);
+		serverPanel.updateScore();
 		players[0].setCurrentPosition(new Vector2(20, 300));
 		players[1].setCurrentPosition(new Vector2(400,  300));
 		
@@ -194,16 +195,27 @@ public class Game implements ActionListener
 			{
 				if(i == 0)
 				{
-					System.out.println("Player 2 is the winner!");
+					players[1].setScore(players[1].getScore() + 1);
+					restartGame();
 					//load winner panel to begin next match
 				}
 				else if (i == 1)
 				{
-					System.out.println("Player 1 is the winner");
+					players[0].setScore(players[0].getScore() + 1);
+					restartGame();
 					//load winner panel to begin next match
 				}
 			}
 		}
+	}
+	
+	public void restartGame()
+	{
+		players[0].setHealth(20);
+		players[1].setHealth(20);
+		players[0].setCurrentPosition(new Vector2(20, 300));
+		players[1].setCurrentPosition(new Vector2(400,  300));
+		serverPanel.updateScore();
 	}
 	
 	public void updatePlayerData()

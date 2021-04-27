@@ -18,8 +18,8 @@ public class GamePanel extends JPanel
     
 	private static final long serialVersionUID = 1L;
 	
-	private PlayerData p1; 
-	private PlayerData p2;
+	private Player p1; 
+	private Player p2;
 	
 	private JPanel background;
 	
@@ -32,128 +32,140 @@ public class GamePanel extends JPanel
 	private JLabel p1Ship;
 	private JLabel p2Ship;
 	
-	public GamePanel(GamePanelControl gpc)
+	public GamePanel()
 	{
-	    
-	    
-	    this.setBackground(Color.BLACK);
-	    
-	    
-	    p1Ship = new JLabel(); 
-	    p1Ship.setBounds(54, 157, 30, 30);
-	    
-	    
-	    
-	  p1Ship.setIcon(new ImageIcon(GamePanel.class.getResource("/gameManagement/player1.png")));
-	  
-      setLayout(null);
-	  //p1Ship.setBounds((int)p1.getPosition().x, (int)p1.getPosition().y, 7, 7);
-	  
-	  //      p2Ship.setIcon(new ImageIcon(GamePanel.class.getResource("/gameManagement/player2.png")));
-//      add(p2.getShip());
-      
-      p1Score = new JLabel("score: ");
-      p1Score.setForeground(Color.LIGHT_GRAY);
-      p1Score.setBounds(54, 13, 60, 14);
-      
-      add(p1Score);
-              
-      p2Score = new JLabel("score: ");
-      p2Score.setForeground(Color.LIGHT_GRAY);
-      p2Score.setBounds(335, 13, 67, 14);
-      add(p2Score);
-                      
-      p1Health = new JLabel("health:");
-      p1Health.setForeground(Color.LIGHT_GRAY);
-      p1Health.setBounds(53, 38, 74, 14);
-      add(p1Health);
-                      
-      p2Health = new JLabel("health:");
-      p2Health.setForeground(Color.LIGHT_GRAY);
-      p2Health.setBounds(334, 38, 68, 14);
-      add(p2Health);
-	  
-      add(p1Ship);
+		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 //	public GamePanel(KeyListener[] keys, Player[] players, JFrame frame)
 //	{
-//		setBackground(Color.black);
-//		
-//		
-//		setFocusable(true);
-//		addKeyListener(keys[0]);
-//		addKeyListener(keys[1]);
-//		
-//		setLayout(null);
-//		
-//		p1 = players[0];
-//		p2 = players[1];
-//		p2.setCurrentPosition(p2.getCurrentPosition().add(new Vector2(20,20)));
-//		
-//		
-//		p1.setShipImage(new ImageIcon(GamePanel.class.getResource("/gameManagement/player1.png")));
-//		p2.setShipImage(new ImageIcon(GamePanel.class.getResource("/gameManagement/player2.png")));
-//		add(p1.getShip());
-//		add(p2.getShip());
-//		
-//		p1Score = new JLabel("score: ");
-//		p1Score.setForeground(Color.LIGHT_GRAY);
-//		p1Score.setBounds(55, 0, 72, 22);
-//		add(p1Score);
-//				
-//		p2Score = new JLabel("score: ");
-//		p2Score.setForeground(Color.LIGHT_GRAY);
-//		p2Score.setBounds(306, 0, 72, 22);
-//		add(p2Score);
-//						
-//		p1Health = new JLabel("health:");
-//		p1Health.setForeground(Color.LIGHT_GRAY);
-//		p1Health.setBounds(55, 20, 72, 22);
-//		add(p1Health);
-//						
-//		p2Health = new JLabel("health:");
-//		p2Health.setForeground(Color.LIGHT_GRAY);
-//		p2Health.setBounds(306, 20, 72, 22);
-//		add(p2Health);
-//	}
-//
-//	
-//	public JPanel getPanel()
-//	{
-//		return this;
+//	    
+//	    
+//	    this.setBackground(Color.BLACK);
+//	    
+//	    
+//	    p1Ship = new JLabel(); 
+//	    p1Ship.setBounds(54, 157, 30, 30);
+//	    
+//	    
+//	    
+//	  p1Ship.setIcon(new ImageIcon(GamePanel.class.getResource("/gameManagement/player1.png")));
+//	  
+//      setLayout(null);
+//	  //p1Ship.setBounds((int)p1.getPosition().x, (int)p1.getPosition().y, 7, 7);
+//	  
+//	  //      p2Ship.setIcon(new ImageIcon(GamePanel.class.getResource("/gameManagement/player2.png")));
+////      add(p2.getShip());
+//      
+//      p1Score = new JLabel("score: ");
+//      p1Score.setForeground(Color.LIGHT_GRAY);
+//      p1Score.setBounds(54, 13, 60, 14);
+//      
+//      add(p1Score);
+//              
+//      p2Score = new JLabel("score: ");
+//      p2Score.setForeground(Color.LIGHT_GRAY);
+//      p2Score.setBounds(335, 13, 67, 14);
+//      add(p2Score);
+//                      
+//      p1Health = new JLabel("health:");
+//      p1Health.setForeground(Color.LIGHT_GRAY);
+//      p1Health.setBounds(53, 38, 74, 14);
+//      add(p1Health);
+//                      
+//      p2Health = new JLabel("health:");
+//      p2Health.setForeground(Color.LIGHT_GRAY);
+//      p2Health.setBounds(334, 38, 68, 14);
+//      add(p2Health);
+//	  
+//      add(p1Ship);
 //	}
 //	
-//	public void paintComponenet(Graphics g)
-//	{
-//		super.paintComponent(g);
-//		
-//		p1.updatePos();
-//		p2.updatePos();
-//		
-//		p1Health.setText("health: " + p1.getHealth());
-//		p2Health.setText("health: " + p2.getHealth());
-//	}
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
 //}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public GamePanel(KeyListener[] keys, Player[] players, JFrame frame)
+	{
+		setBackground(Color.black);
+		
+		
+		setFocusable(true);
+		addKeyListener(keys[0]);
+		addKeyListener(keys[1]);
+		
+		setLayout(null);
+		
+		p1 = players[0];
+		p2 = players[1];
+		p2.setCurrentPosition(p2.getCurrentPosition().add(new Vector2(20,20)));
+		
+		
+		p1.setShipImage(new ImageIcon(GamePanel.class.getResource("/gameManagement/player1.png")));
+		p2.setShipImage(new ImageIcon(GamePanel.class.getResource("/gameManagement/player2.png")));
+		add(p1.getShip());
+		add(p2.getShip());
+		
+		p1Score = new JLabel("score: ");
+		p1Score.setForeground(Color.LIGHT_GRAY);
+		p1Score.setBounds(55, 0, 72, 22);
+		p1Score.setText("score: " + String.valueOf(p1.getScore()));
+		add(p1Score);
+				
+		p2Score = new JLabel("score: ");
+		p2Score.setForeground(Color.LIGHT_GRAY);
+		p2Score.setBounds(306, 0, 72, 22);
+		p2Score.setText("score: " + String.valueOf(p2.getScore()));
+		add(p2Score);
+						
+		p1Health = new JLabel("health:");
+		p1Health.setForeground(Color.LIGHT_GRAY);
+		p1Health.setBounds(55, 20, 72, 22);
+		add(p1Health);
+						
+		p2Health = new JLabel("health:");
+		p2Health.setForeground(Color.LIGHT_GRAY);
+		p2Health.setBounds(306, 20, 72, 22);
+		add(p2Health);
+	}
+	
+	public void updateScore()
+	{
+		p1Score.setText("score: " + String.valueOf(p1.getScore()));
+		p2Score.setText("score: " + String.valueOf(p2.getScore()));
+	}
+	
+	public JPanel getPanel()
+	{
+		return this;
+	}
+	
+	public void paintComponenet(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		p1.updatePos();
+		p2.updatePos();
+		
+		p1Health.setText("health: " + p1.getHealth());
+		p2Health.setText("health: " + p2.getHealth());
+	}
+}

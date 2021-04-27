@@ -1,5 +1,6 @@
 package playerGUI;
 
+import gameManagement.GamePanelControl;
 import ocsf.client.AbstractClient;
 
 public class GameClient extends AbstractClient
@@ -7,6 +8,7 @@ public class GameClient extends AbstractClient
   // Private data fields for storing the GUI controllers.
   private LoginControl loginControl;
   private CreateAccountControl createAccountControl;
+  private GamePanelControl gamePanelControl;
 
   // Setters for the GUI controllers.
   public void setLoginControl(LoginControl loginControl)
@@ -17,11 +19,20 @@ public class GameClient extends AbstractClient
   {
     this.createAccountControl = createAccountControl;
   }
-
+  
+  public void setGamePanelControl(GamePanelControl gamePanelControl)
+  {
+	  this.gamePanelControl = gamePanelControl;
+  }
   // Constructor for initializing the client with default settings.
   public GameClient()
   {
     super("localhost", 8300);
+  }
+  
+  public void intializeGamePanel()
+  {
+	 gamePanelControl.loadGame();
   }
   
   // Method that handles messages from the server.
@@ -33,8 +44,13 @@ public class GameClient extends AbstractClient
       // Get the text of the message.
       String message = (String)arg0;
       
+      if(message.equals("ten"))
+      {
+    	  gamePanelControl.updateHealth(10);;
+      }
+     
       // If we successfully logged in, tell the login controller.
-      if (message.equals("LoginSuccessful"))
+      else if (message.equals("LoginSuccessful"))
       {
         loginControl.loginSuccess();
       }
@@ -64,6 +80,8 @@ public class GameClient extends AbstractClient
         createAccountControl.displayError(error.getMessage());
       }
     }
+    
+    
   }  
 }
 

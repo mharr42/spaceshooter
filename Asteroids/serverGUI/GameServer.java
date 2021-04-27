@@ -145,6 +145,22 @@ public class GameServer extends AbstractServer
         return;
       }
     }
+    
+    else if(arg0 instanceof String)
+    {
+    	if(arg0.equals("RequestIntialGameData"))
+    	{
+    		System.out.println("made it to client's request to start");
+    		Object response = "ten";
+    		try {
+				arg1.sendToClient(response);
+				System.out.println("response sent to client");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    }
   }
 
   // Method that handles listening exceptions by displaying exception information.
