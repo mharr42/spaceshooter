@@ -6,12 +6,12 @@ import java.io.IOException;
 
 import gameManagement.GamePanel;
 import gameManagement.GamePanelControl;
-import input.PlayerInput;
+//import input.PlayerInput;
 
 public class ClientGUI extends JFrame
 {
   
-  private PlayerInput playerInput;
+  //private PlayerInput playerInput;
   
   // Constructor that creates the client GUI.
   public ClientGUI()

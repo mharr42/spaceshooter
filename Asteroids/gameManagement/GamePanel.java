@@ -9,12 +9,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-import input.PlayerInput;
+//import input.PlayerInput;
 
 public class GamePanel extends JPanel
 {
     private GamePanelControl gpc;
-    private PlayerInput player_input;
+    //private PlayerInput player_input;
     
 	private static final long serialVersionUID = 1L;
 	
