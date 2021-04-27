@@ -4,9 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+import gameManagement.GamePanel;
+import gameManagement.GamePanelControl;
+import input.PlayerInput;
+
 public class ClientGUI extends JFrame
 {
   
+  private PlayerInput playerInput;
   
   // Constructor that creates the client GUI.
   public ClientGUI()
@@ -39,6 +44,7 @@ public class ClientGUI extends JFrame
     InitialControl ic = new InitialControl(container,client);
     LoginControl lc = new LoginControl(container,client);
     CreateAccountControl cac = new CreateAccountControl(container,client);
+    GamePanelControl gpc = new GamePanelControl(container,client);
     
     //Set the client info
     client.setLoginControl(lc);
@@ -49,13 +55,14 @@ public class ClientGUI extends JFrame
     JPanel view1 = new InitialPanel(ic);
     JPanel view2 = new LoginPanel(lc);
     JPanel view3 = new CreateAccountPanel(cac);
-    //JPanel view4 = new ContactsPanel();
+    JPanel view4 = new GamePanel(gpc);
+    view4.setPreferredSize(new Dimension(550,350));
     
     // Add the views to the card layout container.
     container.add(view1, "1");
     container.add(view2, "2");
     container.add(view3, "3");
-    //container.add(view4, "4");
+    container.add(view4, "4");
    
     
     // Show the initial view in the card layout.
@@ -67,7 +74,7 @@ public class ClientGUI extends JFrame
     this.add(container);
 
     // Show the JFrame.
-    this.setSize(550, 350);
+    this.setSize(800, 500);
     this.setVisible(true);
   }
 
